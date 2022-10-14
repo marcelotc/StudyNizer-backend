@@ -1,9 +1,18 @@
+import 'dotenv/config';
+
 import express from "express";
+import cors from "cors";
+import routes from "./login/routes.js"; 
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(express.json());
+app.use(cors());
+
+const PORT = process.env.PORT || 5000;
+
+app.use("/user",  routes);  
 
 app.get('/', (req, res) => {
     res.send('StudyNizer')
