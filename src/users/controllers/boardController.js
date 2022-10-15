@@ -1,10 +1,19 @@
 import pool from '../../config/db.js';
-import { getBoardTasksQuery, checkUserExists, addBoardTasksQuery, updateBoardTasksQuery, deleteBoardTasksQuery, checkTaskxists } from '../queries.js';
+import { getBoardTasksQuery, checkUserExists, addBoardTasksQuery, updateBoardTasksQuery, deleteBoardTasksQuery, checkTaskExists } from '../queries.js';
 
 export const getBoardTasks = (req, res) => {
-    pool.query(getBoardTasksQuery, (error, results) => {
-        if (error) throw error;
-        res.status(200).json(results.rows);
+    const id = parseInt(req.params.id);
+    
+    pool.query(checkUserExists, [id], (error, results) => {
+        if (!results.rows.length) {
+            res.status(404).send("User does not exists.");
+            return;
+        }
+
+        pool.query(getBoardTasksQuery, [id], (error, results) => {
+            if (error) throw error;
+            res.status(200).json(results.rows);
+        })
     })
 }
 
@@ -27,7 +36,7 @@ export const updateBoardTasks = (req, res) => {
     const id = parseInt(req.params.id);
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
-    pool.query(checkTaskxists, [id], (error, results) => {
+    pool.query(checkTaskExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
@@ -43,7 +52,7 @@ export const updateBoardTasks = (req, res) => {
 export const deleteBoardTasks = (req, res) => {
     const id = parseInt(req.params.id);
 
-    pool.query(checkTaskxists, [id], (error, results) => {
+    pool.query(checkTaskExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
