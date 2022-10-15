@@ -1,10 +1,5 @@
 /* 
-create table users (
-    id serial primary key,
-    name text not null, 
-    email text not null, 
-    password varchar not null, 
-);
+create table users ( id serial primary key, name text not null, email text not null, password varchar not null );
 */
 
 /* 
