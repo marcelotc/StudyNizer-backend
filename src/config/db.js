@@ -2,9 +2,9 @@ import pg from "pg";
 
 const pool = new pg.Pool({
     user: 'postgres',
-    host: 'containers-us-west-76.railway.app',
+    host: process.env.APP_HOST,
     database: 'railway',
-    password: 'kiwwBNTLwffJVIJVw59H',
+    password: process.env.APP_PASSWORD,
     port: process.env.PORT,
 });
 
