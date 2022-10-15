@@ -5,7 +5,7 @@ const pool = new pg.Pool({
     host: 'localhost',
     database: 'studynizer',
     password: 'admin',
-    port: 5432,
+    port: process.env.PORT,
 });
 
 export default pool;

@@ -14,7 +14,7 @@ export const registerController = async (req, res) => {
         const arr = data.rows;
         if (arr.length != 0) {
             return res.status(400).json({
-                error: "Email already there, No need to register again.",
+                error: "Email já cadastrado!",
             });
         }
         else {
@@ -77,7 +77,7 @@ export const loginController = async (req, res) => {
         const user = data.rows;
         if (user.length === 0) {
             res.status(400).json({
-                error: "User is not registered, Sign Up first",
+                error: "Usuário não cadastrado",
             });
         }
         else {
@@ -96,7 +96,7 @@ export const loginController = async (req, res) => {
                         }
                     );
                     res.status(200).json({
-                        message: "User signed in!",
+                        name: data?.rows[0].name,
                         token: token,
                     });
                 }
@@ -104,7 +104,7 @@ export const loginController = async (req, res) => {
                     //Declaring the errors
                     if (result != true)
                         res.status(400).json({
-                            error: "Enter correct password!",
+                            error: "Senha incorreta!",
                         });
                 }
             })
