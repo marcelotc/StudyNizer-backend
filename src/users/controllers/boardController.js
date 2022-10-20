@@ -1,7 +1,9 @@
 import pool from '../../config/db.js';
 import { 
     checkUserExists, 
-    checkTaskExists, 
+    checkTaskTodoExists, 
+    checkTaskDoingExists, 
+    checkTaskCompletedExists, 
     getBoardTasksTodoQuery, 
     addBoardTasksTodoQuery, 
     updateBoardTodoTasksQuery, 
@@ -53,7 +55,7 @@ export const updateBoardTasksTodo = (req, res) => {
     const id = parseInt(req.params.id);
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
-    pool.query(checkTaskExists, [id], (error, results) => {
+    pool.query(checkTaskTodoExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
@@ -69,7 +71,7 @@ export const updateBoardTasksTodo = (req, res) => {
 export const deleteBoardTasksTodo = (req, res) => {
     const id = parseInt(req.params.id);
 
-    pool.query(checkTaskExists, [id], (error, results) => {
+    pool.query(checkTaskTodoExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
@@ -118,7 +120,7 @@ export const updateBoardTasksDoing  = (req, res) => {
     const id = parseInt(req.params.id);
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
-    pool.query(checkTaskExists, [id], (error, results) => {
+    pool.query(checkTaskTodoExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
@@ -134,7 +136,7 @@ export const updateBoardTasksDoing  = (req, res) => {
 export const deleteBoardTasksDoing  = (req, res) => {
     const id = parseInt(req.params.id);
 
-    pool.query(checkTaskExists, [id], (error, results) => {
+    pool.query(checkTaskTodoExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
@@ -183,7 +185,7 @@ export const updateBoardTasksCompleted  = (req, res) => {
     const id = parseInt(req.params.id);
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
-    pool.query(checkTaskExists, [id], (error, results) => {
+    pool.query(checkTaskCompletedExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
@@ -199,7 +201,7 @@ export const updateBoardTasksCompleted  = (req, res) => {
 export const deleteBoardTasksCompleted  = (req, res) => {
     const id = parseInt(req.params.id);
 
-    pool.query(checkTaskExists, [id], (error, results) => {
+    pool.query(checkTaskCompletedExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;

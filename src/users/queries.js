@@ -8,8 +8,8 @@ create table tasks_todo (
     title text not null, 
     description text not null, 
     priority text not null, 
-    dueDateStart date not null, 
-    dueDateEnd date not null, 
+    due_date_start date not null, 
+    due_date_end date not null, 
     users_id integer REFERENCES users(id) ON DELETE CASCADE
 );
 */
@@ -20,8 +20,8 @@ create table tasks_doing (
     title text not null, 
     description text not null, 
     priority text not null, 
-    dueDateStart date not null, 
-    dueDateEnd date not null, 
+    due_date_start date not null, 
+    due_date_end date not null, 
     users_id integer REFERENCES users(id) ON DELETE CASCADE
 );
 */
@@ -32,8 +32,8 @@ create table tasks_completed (
     title text not null, 
     description text not null, 
     priority text not null, 
-    dueDateStart date not null, 
-    dueDateEnd date not null, 
+    due_date_start date not null, 
+    due_date_end date not null, 
     users_id integer REFERENCES users(id) ON DELETE CASCADE
 );
 */
@@ -47,7 +47,9 @@ create table subjects (
 */
 
 export const checkUserExists = "SELECT u FROM users u WHERE u.id = $1";
-export const checkTaskExists = "SELECT s FROM tasks s WHERE s.id = $1";
+export const checkTaskTodoExists = "SELECT s FROM tasks_todo s WHERE s.id = $1";
+export const checkTaskDoingExists = "SELECT s FROM tasks_doing s WHERE s.id = $1";
+export const checkTaskCompletedExists = "SELECT s FROM tasks_completed WHERE s.id = $1";
 
 // Board Tasks todo queries
 
