@@ -2,7 +2,21 @@ import { Router } from 'express';
 
 import { loginController, registerController } from './controllers/sessionController.js';
 
-import { getBoardTasks, addBoardTasks, updateBoardTasks, deleteBoardTasks } from './controllers/boardController.js';
+import { 
+    getBoardTasksTodo, 
+    addBoardTasksTodo,
+    updateBoardTasksTodo, 
+    deleteBoardTasksTodo,
+    getBoardTasksDoing, 
+    addBoardTasksDoing,
+    updateBoardTasksDoing, 
+    deleteBoardTasksDoing,
+    getBoardTasksCompleted, 
+    addBoardTasksCompleted,
+    updateBoardTasksCompleted, 
+    deleteBoardTasksCompleted,
+} from './controllers/boardController.js';
+
 import { getSubjects, addSubjects, updateSubjects, deleteSubjects } from './controllers/subjectsController.js';
 
 import authMiddleware from '../app/middlewares/auth.js';
@@ -15,10 +29,26 @@ router.post('/login' , loginController);
 
 router.use(authMiddleware);
 
-router.get('/board-tasks/:id', getBoardTasks); 
-router.post('/board-tasks', addBoardTasks); 
-router.put('/board-tasks/:id', updateBoardTasks); 
-router.delete('/board-tasks/:id', deleteBoardTasks); 
+//////////////// BoardTasksTodo //////////////// 
+
+router.get('/board-tasks-todo/:id', getBoardTasksTodo); 
+router.post('/board-tasks-todo', addBoardTasksTodo); 
+router.put('/board-tasks-todo/:id', updateBoardTasksTodo); 
+router.delete('/board-tasks-todo/:id', deleteBoardTasksTodo); 
+
+//////////////// BoardTasksDoing //////////////// 
+
+router.get('/board-tasks-doing/:id', getBoardTasksDoing); 
+router.post('/board-tasks-doing', addBoardTasksDoing); 
+router.put('/board-tasks-doing/:id', updateBoardTasksDoing); 
+router.delete('/board-tasks-doing/:id', deleteBoardTasksDoing); 
+
+//////////////// BoardTasksCompleted //////////////// 
+
+router.get('/board-tasks-completed/:id', getBoardTasksCompleted); 
+router.post('/board-tasks-completed', addBoardTasksCompleted); 
+router.put('/board-tasks-completed/:id', updateBoardTasksCompleted); 
+router.delete('/board-tasks-completed/:id', deleteBoardTasksCompleted); 
 
 router.get('/subjects/:id', getSubjects); 
 router.post('/subjects', addSubjects); 
