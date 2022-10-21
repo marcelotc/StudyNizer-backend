@@ -1,48 +1,48 @@
 /* 
-create table users ( id serial primary key, name text not null, email text not null, password varchar not null );
+create table users ( id uuid DEFAULT gen_random_uuid() PRIMARY KEY, name text not null, email text not null, password varchar not null );
 */
 
 /* 
 create table tasks_todo (
-    id serial primary key,
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     title text not null, 
     description text not null, 
     priority text not null, 
     due_date_start date not null, 
     due_date_end date not null, 
-    users_id integer REFERENCES users(id) ON DELETE CASCADE
+    users_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 */
 
 /* 
 create table tasks_doing (
-    id serial primary key,
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     title text not null, 
     description text not null, 
     priority text not null, 
     due_date_start date not null, 
     due_date_end date not null, 
-    users_id integer REFERENCES users(id) ON DELETE CASCADE
+    users_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 */
 
 /* 
 create table tasks_completed (
-    id serial primary key,
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     title text not null, 
     description text not null, 
     priority text not null, 
     due_date_start date not null, 
     due_date_end date not null, 
-    users_id integer REFERENCES users(id) ON DELETE CASCADE
+    users_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 */
 
 /* 
 create table subjects (
-    id serial primary key,
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     title text not null, 
-    users_id integer REFERENCES users(id) ON DELETE CASCADE
+    users_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 */
 

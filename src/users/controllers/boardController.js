@@ -120,7 +120,7 @@ export const updateBoardTasksDoing  = (req, res) => {
     const id = parseInt(req.params.id);
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
-    pool.query(checkTaskTodoExists, [id], (error, results) => {
+    pool.query(checkTaskDoingExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
@@ -136,7 +136,7 @@ export const updateBoardTasksDoing  = (req, res) => {
 export const deleteBoardTasksDoing  = (req, res) => {
     const id = parseInt(req.params.id);
 
-    pool.query(checkTaskTodoExists, [id], (error, results) => {
+    pool.query(checkTaskDoingExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("Task not exists.");
             return;
