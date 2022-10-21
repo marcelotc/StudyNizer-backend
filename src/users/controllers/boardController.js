@@ -21,7 +21,9 @@ import {
 //////////////// BoardTasksTodo //////////////// 
 
 export const getBoardTasksTodo = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
+
+    console.log('id', id)
     
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -52,7 +54,7 @@ export const addBoardTasksTodo = (req, res) => {
 }
 
 export const updateBoardTasksTodo = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
     pool.query(checkTaskTodoExists, [id], (error, results) => {
@@ -69,7 +71,7 @@ export const updateBoardTasksTodo = (req, res) => {
 }
 
 export const deleteBoardTasksTodo = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
 
     pool.query(checkTaskTodoExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -86,7 +88,7 @@ export const deleteBoardTasksTodo = (req, res) => {
 //////////////// BoardTasksDoing //////////////// 
 
 export const getBoardTasksDoing  = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -117,7 +119,7 @@ export const addBoardTasksDoing  = (req, res) => {
 }
 
 export const updateBoardTasksDoing  = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
     pool.query(checkTaskDoingExists, [id], (error, results) => {
@@ -134,7 +136,7 @@ export const updateBoardTasksDoing  = (req, res) => {
 }
 
 export const deleteBoardTasksDoing  = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
 
     pool.query(checkTaskDoingExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -151,7 +153,7 @@ export const deleteBoardTasksDoing  = (req, res) => {
 //////////////// BoardTasksCompleted //////////////// 
 
 export const getBoardTasksCompleted  = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -182,7 +184,7 @@ export const addBoardTasksCompleted  = (req, res) => {
 }
 
 export const updateBoardTasksCompleted  = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const { title, description, priority, due_date_start, due_date_end } = req.body;
 
     pool.query(checkTaskCompletedExists, [id], (error, results) => {
@@ -199,7 +201,7 @@ export const updateBoardTasksCompleted  = (req, res) => {
 }
 
 export const deleteBoardTasksCompleted  = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
 
     pool.query(checkTaskCompletedExists, [id], (error, results) => {
         if (!results.rows.length) {
