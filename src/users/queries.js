@@ -49,7 +49,7 @@ create table subjects (
 export const checkUserExists = "SELECT u FROM users u WHERE u.id = $1";
 export const checkTaskTodoExists = "SELECT s FROM tasks_todo s WHERE s.id = $1";
 export const checkTaskDoingExists = "SELECT s FROM tasks_doing s WHERE s.id = $1";
-export const checkTaskCompletedExists = "SELECT s FROM tasks_completed WHERE s.id = $1";
+export const checkTaskCompletedExists = "SELECT s FROM tasks_completed s WHERE s.id = $1";
 
 // Board Tasks todo queries
 
