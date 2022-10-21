@@ -96,7 +96,7 @@ export const loginController = async (req, res) => {
                         }
                     );
                     res.status(200).json({
-                        name: data?.rows[0].id,
+                        id: data?.rows[0].id,
                         name: data?.rows[0].name,
                         token: token,
                     });
