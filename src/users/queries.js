@@ -95,4 +95,4 @@ export const deleteSubjectsQuery = "DELETE FROM subjects WHERE id = $1";
 
 // Markdown queries
 
-export const getMarkdownQuery = "select U.id as user_id, U.name, U.email, S.id as subject_id, S.title from users as U inner join markdown as S on U.id = S.users_id WHERE U.id = $1";
+export const getMarkdownQuery = "select U.id as user_id, U.name, U.email, M.id as markdown_id, M.subject_name from users as U inner join markdown as M on U.id = M.users_id WHERE U.id = $1";
