@@ -8,8 +8,8 @@ create table tasks_todo (
     title text not null, 
     description text not null, 
     priority text not null, 
-    due_date_start date not null, 
-    due_date_end date not null, 
+    due_date_start timestamptz not null, 
+    due_date_end timestamptz not null, 
     users_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 */
@@ -20,8 +20,8 @@ create table tasks_doing (
     title text not null, 
     description text not null, 
     priority text not null, 
-    due_date_start date not null, 
-    due_date_end date not null, 
+    due_date_start timestamptz not null, 
+    due_date_end timestamptz not null, 
     users_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 */
@@ -32,8 +32,8 @@ create table tasks_completed (
     title text not null, 
     description text not null, 
     priority text not null, 
-    due_date_start date not null, 
-    due_date_end date not null, 
+    due_date_start timestamptz not null, 
+    due_date_end timestamptz not null, 
     users_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 */
