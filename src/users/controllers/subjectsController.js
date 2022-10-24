@@ -4,6 +4,8 @@ import { getSubjectsQuery, checkUserExists, addSubjectsQuery, updateSubjectsQuer
 export const getSubjects = (req, res) => {
     const id = parseInt(req.params.id);
 
+    console.log('hahahah', id)
+
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("User does not exists.");
