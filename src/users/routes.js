@@ -19,6 +19,8 @@ import {
 
 import { getSubjects, addSubjects, updateSubjects, deleteSubjects } from './controllers/subjectsController.js';
 
+import { getMarkdown } from './controllers/makdownController.js';
+
 import authMiddleware from '../app/middlewares/auth.js';
 
 const router = new Router();
@@ -50,9 +52,15 @@ router.post('/board-tasks-completed', addBoardTasksCompleted);
 router.put('/board-tasks-completed/:id', updateBoardTasksCompleted); 
 router.delete('/board-tasks-completed/:id', deleteBoardTasksCompleted); 
 
+//////////////// Subjects //////////////// 
+
 router.get('/subjects/:id', getSubjects); 
 router.post('/subjects', addSubjects); 
 router.put('/subjects/:id', updateSubjects); 
 router.delete('/subjects/:id', deleteSubjects); 
+
+//////////////// Markown //////////////// 
+
+router.get('/markdown/:id', getMarkdown); 
 
 export default router;

@@ -46,6 +46,19 @@ create table subjects (
 );
 */
 
+/*
+create table markdown (
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+    annotation_block jsonb not null, 
+    url_id text not null,
+    page_id uuid not null,
+    subject_name text not null,
+    users_id uuid REFERENCES users(id) ON DELETE CASCADE
+);
+
+insert into markdown (annotation_block, url_id, page_id, subject_name, users_id) values ('{"id": "testttt"}', 'url tstttt', 'e85aa5e8-9310-4844-9ae1-d13d0f171a29', 'sitemsa operacionais', 'b4430d93-1d30-4490-8601-0661bfc08bdd');
+*/
+
 export const checkUserExists = "SELECT u FROM users u WHERE u.id = $1";
 export const checkTaskTodoExists = "SELECT s FROM tasks_todo s WHERE s.id = $1";
 export const checkTaskDoingExists = "SELECT s FROM tasks_doing s WHERE s.id = $1";
@@ -79,3 +92,7 @@ export const addSubjectsQuery = "insert into subjects (title, users_id)  values 
 export const checkSubjectsExists = "SELECT s FROM subjects s WHERE s.id = $1";
 export const updateSubjectsQuery = "UPDATE subjects SET title = $1 WHERE id = $2";
 export const deleteSubjectsQuery = "DELETE FROM subjects WHERE id = $1";
+
+// Markdown queries
+
+export const getMarkdownQuery = "select U.id as user_id, U.name, U.email, S.id as subject_id, S.title from users as U inner join markdown as S on U.id = S.users_id WHERE U.id = $1";
