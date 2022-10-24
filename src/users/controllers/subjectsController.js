@@ -2,9 +2,7 @@ import pool from '../../config/db.js';
 import { getSubjectsQuery, checkUserExists, addSubjectsQuery, updateSubjectsQuery, deleteSubjectsQuery, checkSubjectsExists } from '../queries.js';
 
 export const getSubjects = (req, res) => {
-    const id = parseInt(req.params.id);
-
-    console.log('hahahah', id)
+    const id = req.params.id;
 
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -34,7 +32,7 @@ export const addSubjects = (req, res) => {
 }
 
 export const updateSubjects = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
     const { title } = req.body;
 
     pool.query(checkSubjectsExists, [id], (error, results) => {
@@ -51,7 +49,7 @@ export const updateSubjects = (req, res) => {
 }
 
 export const deleteSubjects = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id;
 
     pool.query(checkSubjectsExists, [id], (error, results) => {
         if (!results.rows.length) {
