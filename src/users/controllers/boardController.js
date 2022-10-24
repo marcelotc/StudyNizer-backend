@@ -22,8 +22,6 @@ import {
 
 export const getBoardTasksTodo = (req, res) => {
     const id = req.params.id;
-
-    console.log('id', id)
     
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -39,7 +37,7 @@ export const getBoardTasksTodo = (req, res) => {
 }
 
 export const addBoardTasksTodo = (req, res) => {
-    const { title, description, priority, due_date_start, due_date_end, users_id } = req.body;
+    const { id, title, description, priority, due_date_start, due_date_end, users_id } = req.body;
 
     pool.query(checkUserExists, [users_id], (error, results) => {
         if (!results.rows.length) {
@@ -47,7 +45,7 @@ export const addBoardTasksTodo = (req, res) => {
             return;
         }
 
-        pool.query(addBoardTasksTodoQuery, [ title, description, priority, due_date_start, due_date_end, users_id], (error, results) => {
+        pool.query(addBoardTasksTodoQuery, [ id, title, description, priority, due_date_start, due_date_end, users_id], (error, results) => {
             res.status(201).send("Task added Successfully!");
         })
     })
@@ -104,7 +102,7 @@ export const getBoardTasksDoing  = (req, res) => {
 }
 
 export const addBoardTasksDoing  = (req, res) => {
-    const { title, description, priority, due_date_start, due_date_end, users_id } = req.body;
+    const { id, title, description, priority, due_date_start, due_date_end, users_id } = req.body;
 
     pool.query(checkUserExists, [users_id], (error, results) => {
         if (!results.rows.length) {
@@ -112,7 +110,7 @@ export const addBoardTasksDoing  = (req, res) => {
             return;
         }
 
-        pool.query(addBoardTasksDoingQuery, [ title, description, priority, due_date_start, due_date_end, users_id], (error, results) => {
+        pool.query(addBoardTasksDoingQuery, [ id, title, description, priority, due_date_start, due_date_end, users_id], (error, results) => {
             res.status(201).send("Task added Successfully!");
         })
     })
@@ -169,7 +167,7 @@ export const getBoardTasksCompleted  = (req, res) => {
 }
 
 export const addBoardTasksCompleted  = (req, res) => {
-    const { title, description, priority, due_date_start, due_date_end, users_id } = req.body;
+    const { id, title, description, priority, due_date_start, due_date_end, users_id } = req.body;
 
     pool.query(checkUserExists, [users_id], (error, results) => {
         if (!results.rows.length) {
@@ -177,7 +175,7 @@ export const addBoardTasksCompleted  = (req, res) => {
             return;
         }
 
-        pool.query(addBoardTasksCompletedQuery, [ title, description, priority, due_date_start, due_date_end, users_id], (error, results) => {
+        pool.query(addBoardTasksCompletedQuery, [ id, title, description, priority, due_date_start, due_date_end, users_id], (error, results) => {
             res.status(201).send("Task added Successfully!");
         })
     })
