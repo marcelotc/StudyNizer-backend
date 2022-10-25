@@ -16,7 +16,7 @@ export const getMarkdown = (req, res) => {
     })
 }
 export const addMarkdown = (req, res) => {
-    const { annotation_block, url_id, page_id, subject_name, users_id } = req.body;
+    const { annotation_block, page_name, url_id, page_id, subject_name, users_id } = req.body;
 
     pool.query(checkUserExists, [users_id], (error, results) => {
         if (!results.rows.length) {
@@ -24,7 +24,7 @@ export const addMarkdown = (req, res) => {
             return;
         }
 
-        pool.query(addMarkdownQuery, [annotation_block, url_id, page_id, subject_name, users_id], (error, results) => {
+        pool.query(addMarkdownQuery, [annotation_block, page_name, url_id, page_id, subject_name, users_id], (error, results) => {
             res.status(201).send("Markdown added Successfully!");
         })
     })
