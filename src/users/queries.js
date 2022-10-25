@@ -50,6 +50,7 @@ create table subjects (
 create table markdown (
     id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     annotation_block jsonb not null, 
+  	page_name text not null,
     url_id text not null,
     page_id uuid not null,
     subject_name text not null,
