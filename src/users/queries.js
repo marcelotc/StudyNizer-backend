@@ -54,7 +54,8 @@ create table markdown (
     url_id text not null,
     page_id uuid not null,
     subject_name text not null,
-    users_id uuid REFERENCES users(id) ON DELETE CASCADE
+    users_id uuid REFERENCES users(id) ON DELETE CASCADE,    
+    subjects_id uuid REFERENCES subjects(id) ON DELETE CASCADE
 );
 
 insert into markdown (annotation_block, url_id, page_id, subject_name, users_id) values ('{
@@ -189,5 +190,5 @@ export const deleteSubjectsQuery = "DELETE FROM subjects WHERE id = $1";
 
 // Markdown queries
 
-export const getMarkdownQuery = "select U.id as user_id, U.name, U.email, M.id as markdown_id, M.subject_name, M.annotation_block, M.page_name, M.url_id, M.page_id from users as U inner join markdown as M on U.id = M.users_id WHERE U.id = $1";
-export const addMarkdownQuery = "insert into markdown (annotation_block, page_name, url_id, page_id, subject_name, users_id)  values($1, $2, $3, $4, $5, $6)";
+export const getMarkdownQuery = "select U.id as user_id, S.id as subject_id, U.name, U.email, M.id as markdown_id, M.subject_name, M.annotation_block, M.page_name, M.url_id, M.page_id from users as U inner join markdown as M on U.id = M.users_id WHERE U.id = $1";
+export const addMarkdownQuery = "insert into markdown (annotation_block, page_name, url_id, page_id, subject_name, subjects_id, users_id)  values($1, $2, $3, $4, $5, $6, $7)";
