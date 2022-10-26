@@ -1,5 +1,5 @@
 import pool from '../../config/db.js';
-import { getMarkdownQuery, addMarkdownQuery, updateMarkdownQuery, checkUserExists} from '../queries.js';
+import { getMarkdownQuery, addMarkdownQuery, updateMarkdownQuery, checkUserExists, checkMarkdownExists} from '../queries.js';
 
 export const getMarkdown = (req, res) => {
     const id = req.params.id;
@@ -30,17 +30,18 @@ export const addMarkdown = (req, res) => {
     })
 }
 
-export const updateMarkdown = (req, res) => {
-    const { annotation_block, page_name, url_id, page_id, subject_name, subjects_id, users_id } = req.body;
+export const updateMarkdown  = (req, res) => {
+    const id = req.params.id;
+    const { annotation_block, page_name, url_id, page_id, subject_name } = req.body;
 
-    pool.query(checkUserExists, [users_id], (error, results) => {
+    pool.query(checkMarkdownExists, [id], (error, results) => {
         if (!results.rows.length) {
-            res.status(404).send("User does not exists.");
+            res.status(404).send("Task not exists.");
             return;
         }
 
-        pool.query(updateMarkdownQuery, [annotation_block, page_name, url_id, page_id, subject_name, subjects_id, users_id], (error, results) => {
-            res.status(201).send("Markdown added Successfully!");
+        pool.query(updateMarkdownQuery, [ annotation_block, page_name, url_id, page_id, subject_name, id], (error, results) => {
+            res.status(201).send("Markdown updated!");
         })
     })
 }
