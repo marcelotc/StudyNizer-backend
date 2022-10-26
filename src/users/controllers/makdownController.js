@@ -56,7 +56,7 @@ export const deleteMarkdown  = (req, res) => {
         }
 
         pool.query(deleteMarkdownQuery, [id], (error, results) => {
-            res.status(201).send("Task deleted!");
+            res.status(201).send("Markdown deleted!");
         })
     })
 }
