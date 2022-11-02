@@ -16,11 +16,9 @@ export const getMarkdown = (req, res) => {
     })
 }
 
-export const getMarkdownToExport = () => {
+export const getMarkdownToExport = (req, res) => {
     const id = req.params.id;
     const subjectTitle = req.params.subjectTitle;
-
-    console.log('subjectTitlesubjectTitle', subjectTitle)
 
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
