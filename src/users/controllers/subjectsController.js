@@ -64,7 +64,9 @@ export const deleteSubjects = (req, res) => {
 }
 
 export const deleteSubjectsMarkdown = (req, res) => {
-    const { id, subjectName } = req.params;
+    const id = req.params.id;
+    const subjectName = req.params.subjectName;
+
 
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
