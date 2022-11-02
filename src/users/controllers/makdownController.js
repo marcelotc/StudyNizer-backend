@@ -1,3 +1,5 @@
+import format from 'pg-format';
+
 import pool from '../../config/db.js';
 import { getMarkdownQuery, getMarkdownToExportQuery, addMarkdownQuery, updateMarkdownQuery, checkUserExists, deleteMarkdownQuery, checkMarkdownExists} from '../queries.js';
 
@@ -45,6 +47,39 @@ export const addMarkdown = (req, res) => {
 
         pool.query(addMarkdownQuery, [annotation_block, page_name, url_id, page_id, subject_name, users_id], (error, results) => {
             res.status(201).send("Markdown added Successfully!");
+        })
+    })
+}
+
+export const addMarkdownImport = (req, res) => {
+    const { users_id } = req.body;
+    const { markdown_data } = req.body;
+
+    const getMarkdownData = markdown_data.map((data) => {
+        const markdownDataObj = [
+            data.annotation_block,
+            data.page_name,
+            data.url_id,
+            data.page_id,
+            data.subject_name,
+            users_id
+        ]
+
+        return markdownDataObj;
+    })
+
+    let markdownData = getMarkdownData;
+
+    const markdownImportQuery = format(`INSERT INTO markdown (annotation_block, page_name, url_id, page_id, subject_name, users_id) VALUES %L`, markdownData);
+
+    pool.query(checkUserExists, [users_id], (error, results) => {
+        if (!results.rows.length) {
+            res.status(404).send("User does not exists.");
+            return;
+        }
+
+        pool.query(markdownImportQuery, (error, results) => {
+            res.status(201).send("Markdown imported Successfully!");
         })
     })
 }

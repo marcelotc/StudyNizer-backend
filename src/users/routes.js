@@ -19,7 +19,7 @@ import {
 
 import { getSubjects, addSubjects, updateSubjects, deleteSubjects } from './controllers/subjectsController.js';
 
-import { getMarkdown, getMarkdownToExport, addMarkdown, updateMarkdown, deleteMarkdown } from './controllers/makdownController.js';
+import { getMarkdown, getMarkdownToExport, addMarkdown, addMarkdownImport, updateMarkdown, deleteMarkdown } from './controllers/makdownController.js';
 
 import authMiddleware from '../app/middlewares/auth.js';
 
@@ -64,6 +64,7 @@ router.delete('/subjects/:id', deleteSubjects);
 router.get('/markdown/:id', getMarkdown);
 router.get('/markdown/:id/:subjectTitle', getMarkdownToExport);
 router.post('/markdown', addMarkdown); 
+router.post('/markdownImport', addMarkdownImport); 
 router.put('/markdown/:id', updateMarkdown); 
 router.delete('/markdown/:id', deleteMarkdown); 
 
