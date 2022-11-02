@@ -64,8 +64,7 @@ export const deleteSubjects = (req, res) => {
 }
 
 export const deleteSubjectsMarkdown = (req, res) => {
-    const id = req.params.id;
-    const { subject_name } = req.body;
+    const { id, subjectName } = req.params;
 
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
@@ -73,7 +72,7 @@ export const deleteSubjectsMarkdown = (req, res) => {
             return;
         }
 
-        pool.query(deleteSubjectsMarkdownQuery, [subject_name, id], (error, results) => {
+        pool.query(deleteSubjectsMarkdownQuery, [subjectName, id], (error, results) => {
             res.status(201).send("Subject deleted!");
         })
     })

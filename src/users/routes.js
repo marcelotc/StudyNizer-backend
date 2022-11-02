@@ -58,7 +58,7 @@ router.get('/subjects/:id', getSubjects);
 router.post('/subjects', addSubjects); 
 router.put('/subjects/:id', updateSubjects); 
 router.delete('/subjects/:id', deleteSubjects); 
-router.delete('/subjectsMarkdown/:id', deleteSubjectsMarkdown); 
+router.delete('/subjectsMarkdown/:id/:subjectName', deleteSubjectsMarkdown); 
 
 //////////////// Markown //////////////// 
 
