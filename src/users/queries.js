@@ -187,6 +187,7 @@ export const addSubjectsQuery = "insert into subjects (title, users_id)  values 
 export const checkSubjectsExists = "SELECT s FROM subjects s WHERE s.id = $1";
 export const updateSubjectsQuery = "UPDATE subjects SET title = $1 WHERE id = $2";
 export const deleteSubjectsQuery = "DELETE FROM subjects WHERE id = $1";
+export const deleteSubjectsMarkdownQuery = "DELETE FROM markdown WHERE subject_name = $1 and users_id = $2";
 
 // Markdown queries
 

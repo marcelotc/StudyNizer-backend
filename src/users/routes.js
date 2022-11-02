@@ -17,7 +17,7 @@ import {
     deleteBoardTasksCompleted,
 } from './controllers/boardController.js';
 
-import { getSubjects, addSubjects, updateSubjects, deleteSubjects } from './controllers/subjectsController.js';
+import { getSubjects, addSubjects, updateSubjects, deleteSubjects, deleteSubjectsMarkdown } from './controllers/subjectsController.js';
 
 import { getMarkdown, getMarkdownToExport, addMarkdown, addMarkdownImport, updateMarkdown, deleteMarkdown } from './controllers/makdownController.js';
 
@@ -58,6 +58,7 @@ router.get('/subjects/:id', getSubjects);
 router.post('/subjects', addSubjects); 
 router.put('/subjects/:id', updateSubjects); 
 router.delete('/subjects/:id', deleteSubjects); 
+router.delete('/subjectsMarkdown/:id', deleteSubjectsMarkdown); 
 
 //////////////// Markown //////////////// 
 

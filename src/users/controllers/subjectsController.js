@@ -1,5 +1,5 @@
 import pool from '../../config/db.js';
-import { getSubjectsQuery, checkUserExists, addSubjectsQuery, updateSubjectsQuery, deleteSubjectsQuery, checkSubjectsExists } from '../queries.js';
+import { getSubjectsQuery, checkUserExists, addSubjectsQuery, updateSubjectsQuery, deleteSubjectsQuery, deleteSubjectsMarkdownQuery, checkSubjectsExists } from '../queries.js';
 
 export const getSubjects = (req, res) => {
     const id = req.params.id;
@@ -58,6 +58,22 @@ export const deleteSubjects = (req, res) => {
         }
 
         pool.query(deleteSubjectsQuery, [id], (error, results) => {
+            res.status(201).send("Subject deleted!");
+        })
+    })
+}
+
+export const deleteSubjectsMarkdown = (req, res) => {
+    const id = req.params.id;
+    const { subject_name } = req.body;
+
+    pool.query(checkSubjectsExists, [id], (error, results) => {
+        if (!results.rows.length) {
+            res.status(404).send("Subject not exists.");
+            return;
+        }
+
+        pool.query(deleteSubjectsMarkdownQuery, [subject_name, id], (error, results) => {
             res.status(201).send("Subject deleted!");
         })
     })
