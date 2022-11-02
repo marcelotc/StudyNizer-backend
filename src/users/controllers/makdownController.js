@@ -1,5 +1,5 @@
 import pool from '../../config/db.js';
-import { getMarkdownQuery, addMarkdownQuery, updateMarkdownQuery, checkUserExists, deleteMarkdownQuery, checkMarkdownExists} from '../queries.js';
+import { getMarkdownQuery, getMarkdownToExportQuery, addMarkdownQuery, updateMarkdownQuery, checkUserExists, deleteMarkdownQuery, checkMarkdownExists} from '../queries.js';
 
 export const getMarkdown = (req, res) => {
     const id = req.params.id;
@@ -15,6 +15,23 @@ export const getMarkdown = (req, res) => {
         })
     })
 }
+
+export const getMarkdownToExport = () => {
+    const id = req.params.id;
+    const subjectTitle = req.params.subjectTitle;
+
+    pool.query(checkUserExists, [id], (error, results) => {
+        if (!results.rows.length) {
+            res.status(404).send("User does not exists.");
+            return;
+        }
+        pool.query(getMarkdownToExportQuery, [id, subjectTitle], (error, results) => {
+            if (error) throw error;
+            res.status(200).json(results.rows);
+        })
+    })
+}
+
 export const addMarkdown = (req, res) => {
     const { annotation_block, page_name, url_id, page_id, subject_name, users_id } = req.body;
 
