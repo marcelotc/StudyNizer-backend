@@ -22,8 +22,6 @@ export const getMarkdownToExport = (req, res) => {
     const id = req.params.id;
     const subjectTitle = req.params.subjectTitle;
 
-    console.log('subjectTitlesubjectTitle', subjectTitle)
-
     pool.query(checkUserExists, [id], (error, results) => {
         if (!results.rows.length) {
             res.status(404).send("User does not exists.");

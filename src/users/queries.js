@@ -1,7 +1,12 @@
 /* 
-create table users ( id uuid DEFAULT gen_random_uuid() PRIMARY KEY, name text not null, email text not null, password varchar not null );
+create table users ( 
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY, 
+    name text not null, 
+    email text not null, 
+    password varchar not null 
+);
 */
-
+    
 /* 
 create table tasks_todo (
     id uuid PRIMARY KEY,
